@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "ZK8 — Zen Kinematics 8 Systems"
+version = "1.0.0"
+id = "artifacts/zk8"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18293
+
+[services.development]
+run = "bash -c 'export PATH=/nix/store/bl6iwirn83qj9r8wng43kfdqd5mfahj8-nodejs-22.22.0/bin:$PATH && cd /home/runner/workspace/Zen-Defense-Systems/Zen-Defense-Systems/artifacts/zk8 && node_modules/.bin/vite --config vite.config.ts --host 0.0.0.0'"
+
+[services.production]
+build = [ "bash", "-c", "export PATH=/nix/store/bl6iwirn83qj9r8wng43kfdqd5mfahj8-nodejs-22.22.0/bin:$PATH && cd /home/runner/workspace/Zen-Defense-Systems/Zen-Defense-Systems/artifacts/zk8 && node_modules/.bin/vite build --config vite.config.ts" ]
+serve = "static"
+publicDir = "artifacts/zk8/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18293"
+BASE_PATH = "/"
