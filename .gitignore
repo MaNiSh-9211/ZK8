@@ -39,3 +39,11 @@ Thumbs.db
 
 # Vite
 .vite/
+
+# Replit — remove all traces
+.replit
+.replit-artifact/
+replit.nix
+.upm/
+.cache/
+.config/
